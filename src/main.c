@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 #include "datatype_assessment.c"  // for clang compiler, .c instead of .h
+#include "lowlevel_functions.c"
 
 const unsigned int offset1stArg = 1;
 
@@ -28,8 +29,10 @@ int main(int argc, char const *argv[]) {
     if (sizeof(extDataTypes) == 0) {
         puts("No function inputs, skipping creation of extended data types.");
     } else {
-        for (unsigned int i = offset1stArg; i < numFunctionArgs; i++) {
-            initialize_extended_datatype(&extDataTypes[i - offset1stArg], argv[i]);
+        for (unsigned int i = offset1stArg; i < numFunctionArgs + offset1stArg; i++) {
+            if (string_length(argv[i]) > 0) {
+                initialize_extended_datatype(&extDataTypes[i - offset1stArg], argv[i]);
+            }
         }
     }
 
