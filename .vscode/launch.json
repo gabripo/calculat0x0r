@@ -36,7 +36,6 @@
             "request": "launch",
             "program": "${workspaceFolder}/bin/Debug/calculat0x0r",
             "args": [
-                "",
                 "42"
             ],
             "stopAtEntry": false,
