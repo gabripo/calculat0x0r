@@ -1,0 +1,10 @@
+typedef signed char schar;
+typedef unsigned char uchar;
+typedef short int sint;
+typedef unsigned short int usint;
+typedef unsigned int uint;
+typedef long int lint;
+typedef long unsigned int luint;
+typedef long long int llint;
+typedef long long unsigned int lluint;
+typedef long double ldouble;
