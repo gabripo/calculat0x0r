@@ -1,0 +1,15 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "cd bin/Release && cmake ../.. && make"
+        },
+        {
+            "label": "build debug",
+            "type": "shell",
+            "command": "cd bin/Debug && cmake -DCMAKE_BUILD_TYPE=Debug ../.. && make"
+        }
+    ]
+}
