@@ -46,6 +46,36 @@
             "preLaunchTask": "build debug"
         },
         {
+            "name": "(lldb) Debug with 1 int (with trailing zeros) argument",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/Debug/calculat0x0r",
+            "args": [
+                "0000000042"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "preLaunchTask": "build debug"
+        },
+        {
+            "name": "(lldb) Debug with 1 int (with minus and trailing zeros) argument",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/Debug/calculat0x0r",
+            "args": [
+                "-0000000042"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "preLaunchTask": "build debug"
+        },
+        {
             "name": "(lldb) Debug with 1 int (negative) argument",
             "type": "cppdbg",
             "request": "launch",
@@ -82,6 +112,21 @@
             "program": "${workspaceFolder}/bin/Debug/calculat0x0r",
             "args": [
                 "ABCD"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "preLaunchTask": "build debug"
+        },
+        {
+            "name": "(lldb) Debug with 1 hex (mixed letters and numbers) argument",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/Debug/calculat0x0r",
+            "args": [
+                "ABC42D"
             ],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
@@ -157,6 +202,36 @@
             "program": "${workspaceFolder}/bin/Debug/calculat0x0r",
             "args": [
                 "A%BCD!&|()"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "preLaunchTask": "build debug"
+        },
+        {
+            "name": "(lldb) Debug with 1 wrong (0x only) argument",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/Debug/calculat0x0r",
+            "args": [
+                "0x"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "preLaunchTask": "build debug"
+        },
+        {
+            "name": "(lldb) Debug with 1 wrong (- only) argument",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/Debug/calculat0x0r",
+            "args": [
+                "-"
             ],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
