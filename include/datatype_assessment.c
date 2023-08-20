@@ -57,7 +57,7 @@ void determine_basic_type_representation(extendedDataType* inputExtDataType) {
         }
     } else if (hasComma) {
         inputExtDataType->basic = FLOATING_TYPE;
-        inputExtDataType->representation.floatingRepresentation = IEE754;
+        inputExtDataType->representation.floatingRepresentation = DECIMAL_FLOAT;
     } else if (only1s0s) {
         // TODO check if very long string, as it may be a floating point number
         inputExtDataType->basic = INTEGER_TYPE;
@@ -67,7 +67,7 @@ void determine_basic_type_representation(extendedDataType* inputExtDataType) {
         inputExtDataType->representation.integerRepresentation = HEXADECIMAL;
     } else {
         inputExtDataType->basic = INTEGER_TYPE;
-        inputExtDataType->representation.integerRepresentation = DECIMAL;
+        inputExtDataType->representation.integerRepresentation = DECIMAL_INT;
     }
 };
 void determine_width(extendedDataType* inputExtDataType){};

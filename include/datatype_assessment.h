@@ -1,3 +1,5 @@
+#ifndef DATATYPE_ASSESSMENT
+#define DATATYPE_ASSESSMENT
 #include <float.h>
 #include <limits.h>
 
@@ -8,11 +10,13 @@ typedef struct
     union {
         enum {
             BINARY,
-            DECIMAL,
+            DECIMAL_INT,
             HEXADECIMAL
         } integerRepresentation;
         enum {
-            IEE754
+            DECIMAL_FLOAT,
+            IEE754_SINGLE,
+            IEE754_DOUBLE
         } floatingRepresentation;
         enum {
             UNDEFINED
@@ -130,3 +134,5 @@ void determine_minmax_range(extendedDataType* inputExtDataType);
 
 void initialize_extended_datatype(extendedDataType* inputExtDataType, const char* const stringToParse);
 // bool check_validity_extended_datatype(const extendedDataType* const inputExtDataType);
+
+#endif
