@@ -7,17 +7,21 @@ typedef struct
 {
     union {
         enum {
+            BINARY,
             DECIMAL,
             HEXADECIMAL
         } integerRepresentation;
         enum {
             IEE754
         } floatingRepresentation;
+        enum {
+            UNDEFINED
+        } undefinedRepresentation;
     };
 } representationType;
 
 typedef enum {
-    UNDEFINED,
+    UNDEFINED_TYPE,
     CHAR_TYPE,
     INTEGER_TYPE,
     FLOATING_TYPE
@@ -103,8 +107,9 @@ typedef struct
 typedef struct
 {
     char* numberString;
-    representationType representation;
+    size_t stringStartOffset;
     basicType basic;
+    representationType representation;
     widthType width;
     signType sign;
     sizeType size;
@@ -114,8 +119,8 @@ typedef struct
 } extendedDataType;
 
 void parse_number_from_string(extendedDataType* inputExtDataType);
-void determine_representation(extendedDataType* inputExtDataType);
-void determine_basic_type(extendedDataType* inputExtDataType);
+void determine_numberstring_offset(extendedDataType* inputExtDataType);
+void determine_basic_type_representation(extendedDataType* inputExtDataType);
 void determine_width(extendedDataType* inputExtDataType);
 void determine_sign(extendedDataType* inputExtDataType);
 void determine_size(extendedDataType* inputExtDataType);
@@ -124,3 +129,4 @@ void determine_complement(extendedDataType* inputExtDataType);
 void determine_minmax_range(extendedDataType* inputExtDataType);
 
 void initialize_extended_datatype(extendedDataType* inputExtDataType, const char* const stringToParse);
+// bool check_validity_extended_datatype(const extendedDataType* const inputExtDataType);
