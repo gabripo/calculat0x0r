@@ -18,9 +18,6 @@ void determine_numberstring_offset(extendedDataType* inputExtDataType) {
 }
 
 void determine_basic_type_representation(extendedDataType* inputExtDataType) {
-    inputExtDataType->basic = UNDEFINED_TYPE;
-    inputExtDataType->representation.undefinedRepresentation = UNDEFINED;
-
     bool allLettersOrSymbols = true;
     bool allValidHexChars = true;
     bool hasComma = false;
@@ -44,6 +41,8 @@ void determine_basic_type_representation(extendedDataType* inputExtDataType) {
     }
     if (idxString == inputExtDataType->stringStartOffset) {
         // no loop cycles performed, probably wrong input
+        inputExtDataType->basic = UNDEFINED_TYPE;
+        inputExtDataType->representation.undefinedRepresentation = UNDEFINED;
         return;
     }
 
