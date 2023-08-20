@@ -44,6 +44,126 @@
             "externalConsole": false,
             "MIMode": "lldb",
             "preLaunchTask": "build debug"
+        },
+        {
+            "name": "(lldb) Debug with 1 int (negative) argument",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/Debug/calculat0x0r",
+            "args": [
+                "-42"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "preLaunchTask": "build debug"
+        },
+        {
+            "name": "(lldb) Debug with 1 hex (0x) argument",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/Debug/calculat0x0r",
+            "args": [
+                "0x42"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "preLaunchTask": "build debug"
+        },
+        {
+            "name": "(lldb) Debug with 1 hex (all letters) argument",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/Debug/calculat0x0r",
+            "args": [
+                "ABCD"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "preLaunchTask": "build debug"
+        },
+        {
+            "name": "(lldb) Debug with 1 bin argument",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/Debug/calculat0x0r",
+            "args": [
+                "00101010"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "preLaunchTask": "build debug"
+        },
+        {
+            "name": "(lldb) Debug with 1 floating (with comma) argument",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/Debug/calculat0x0r",
+            "args": [
+                "1.234"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "preLaunchTask": "build debug"
+        },
+        {
+            "name": "(lldb) Debug with 1 floating (negative, with comma) argument",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/Debug/calculat0x0r",
+            "args": [
+                "-1.234"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "preLaunchTask": "build debug"
+        },
+        {
+            "name": "(lldb) Debug with 1 string (with comma) argument",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/Debug/calculat0x0r",
+            "args": [
+                "A.BCD"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "preLaunchTask": "build debug"
+        },
+        {
+            "name": "(lldb) Debug with 1 string (with strange charachters) argument",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/Debug/calculat0x0r",
+            "args": [
+                "A%BCD!&|()"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "preLaunchTask": "build debug"
         }
     ]
 }
