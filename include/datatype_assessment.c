@@ -35,7 +35,7 @@ void determine_basic_type_representation(extendedDataType* inputExtDataType) {
         if (!allLettersOrSymbols && !hasComma) {
             hasComma = (currChar == '.') || (currChar == ',');
         }
-        if (allNumbers) {
+        if (!allLettersOrSymbols) {
             only1s0s = only1s0s && ((currChar == '0' || currChar == '1'));
         }
     }
