@@ -29,6 +29,15 @@ bool contains_0x_start(const char* const inputString) {
     return false;
 }
 
+bool contains_0b_start(const char* const inputString) {
+    if (string_length(inputString) >= 2) {
+        if ((inputString[0]) == '0' && (inputString[1] == 'b')) {
+            return true;
+        }
+    }
+    return false;
+}
+
 bool contains_minus_sign(const char* const inputString) {
     if (string_length(inputString) >= 1) {
         return (inputString[0] == '-');

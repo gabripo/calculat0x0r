@@ -151,6 +151,21 @@
             "preLaunchTask": "build debug"
         },
         {
+            "name": "(lldb) Debug with 1 bin (0b) argument",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/Debug/calculat0x0r",
+            "args": [
+                "0b00101010"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "preLaunchTask": "build debug"
+        },
+        {
             "name": "(lldb) Debug with 1 floating (with comma) argument",
             "type": "cppdbg",
             "request": "launch",

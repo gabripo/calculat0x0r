@@ -8,7 +8,7 @@
 #include "lowlevel_functions.h"
 
 void determine_numberstring_offset(extendedDataType* inputExtDataType) {
-    if (contains_0x_start(inputExtDataType->numberString)) {
+    if (contains_0x_start(inputExtDataType->numberString) || contains_0b_start(inputExtDataType->numberString)) {
         inputExtDataType->stringStartOffset = 2;
     } else if (contains_minus_sign(inputExtDataType->numberString)) {
         inputExtDataType->stringStartOffset = 1;
@@ -89,16 +89,16 @@ void parse_number_from_string(extendedDataType* inputExtDataType) {
     }
     // TODO recognize scientific notation, case with E - rearrange string?
     determine_basic_type_representation(inputExtDataType);
+    determine_width(inputExtDataType);
+    determine_sign(inputExtDataType);
+    determine_size(inputExtDataType);
+    determine_value(inputExtDataType);
 };
 
 void initialize_extended_datatype(extendedDataType* inputExtDataType, const char* const stringToParse) {
     inputExtDataType->numberString = create_copy_string(stringToParse);
     parse_number_from_string(inputExtDataType);
 
-    determine_width(inputExtDataType);
-    determine_sign(inputExtDataType);
-    determine_size(inputExtDataType);
-    determine_value(inputExtDataType);
     determine_complement(inputExtDataType);
     determine_minmax_range(inputExtDataType);
 }
