@@ -20,6 +20,7 @@ void determine_numberstring_offset(extendedDataType* inputExtDataType) {
 void determine_basic_type_representation(extendedDataType* inputExtDataType) {
     bool allLettersOrSymbols = true;
     bool allValidHexChars = true;
+    bool allNumbers = true;
     bool hasComma = false;
     bool only1s0s = true;
     determine_numberstring_offset(inputExtDataType);
@@ -29,14 +30,13 @@ void determine_basic_type_representation(extendedDataType* inputExtDataType) {
         if (allLettersOrSymbols) {
             allLettersOrSymbols = !isnumber(currChar);
         }
-        if (allValidHexChars) {
-            allValidHexChars = contains_hex_letters(&currChar) || isnumber(currChar);
-        }
+        allValidHexChars = allValidHexChars && (contains_hex_letters(&currChar) || isnumber(currChar));
+        allNumbers = allNumbers && isnumber(currChar);
         if (!allLettersOrSymbols && !hasComma) {
             hasComma = (currChar == '.') || (currChar == ',');
         }
-        if (!allLettersOrSymbols && only1s0s) {
-            only1s0s = (currChar == '0' || currChar == '1');
+        if (allNumbers) {
+            only1s0s = only1s0s && ((currChar == '0' || currChar == '1'));
         }
     }
     if (idxString == inputExtDataType->stringStartOffset) {
@@ -58,15 +58,18 @@ void determine_basic_type_representation(extendedDataType* inputExtDataType) {
         inputExtDataType->basic = FLOATING_TYPE;
         inputExtDataType->representation.floatingRepresentation = DECIMAL_FLOAT;
     } else if (only1s0s) {
-        // TODO check if very long string, as it may be a floating point number
+        // TODO modality to consider binary values as floating-point numbers
         inputExtDataType->basic = INTEGER_TYPE;
         inputExtDataType->representation.integerRepresentation = BINARY;
     } else if (allValidHexChars) {
         inputExtDataType->basic = INTEGER_TYPE;
-        inputExtDataType->representation.integerRepresentation = HEXADECIMAL;
+        if (allNumbers && !contains_0x_start(inputExtDataType->numberString)) {
+            inputExtDataType->representation.integerRepresentation = DECIMAL_INT;
+        } else {
+            inputExtDataType->representation.integerRepresentation = HEXADECIMAL;
+        }
     } else {
-        inputExtDataType->basic = INTEGER_TYPE;
-        inputExtDataType->representation.integerRepresentation = DECIMAL_INT;
+        inputExtDataType->basic = CHAR_TYPE;
     }
 };
 void determine_width(extendedDataType* inputExtDataType){};
