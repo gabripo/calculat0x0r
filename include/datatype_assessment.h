@@ -5,6 +5,8 @@
 
 #include "custom_datatypes.h"
 
+#define MAX_BITS 64
+
 typedef struct
 {
     union {
@@ -111,6 +113,7 @@ typedef struct
 typedef struct
 {
     char* numberString;
+    size_t stringLength;
     size_t stringStartOffset;
     basicType basic;
     representationType representation;
@@ -123,6 +126,7 @@ typedef struct
 } extendedDataType;
 
 void parse_number_from_string(extendedDataType* inputExtDataType);
+void set_undefined_basic_type(extendedDataType* inputExtDataType);
 void determine_numberstring_offset(extendedDataType* inputExtDataType);
 void determine_basic_type_representation(extendedDataType* inputExtDataType);
 void determine_width(extendedDataType* inputExtDataType);

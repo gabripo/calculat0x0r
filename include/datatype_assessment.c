@@ -7,6 +7,11 @@
 
 #include "lowlevel_functions.h"
 
+void set_undefined_basic_type(extendedDataType* inputExtDataType) {
+    inputExtDataType->basic = UNDEFINED_TYPE;
+    inputExtDataType->representation.undefinedRepresentation = UNDEFINED;
+}
+
 void determine_numberstring_offset(extendedDataType* inputExtDataType) {
     if (contains_0x_start(inputExtDataType->numberString) || contains_0b_start(inputExtDataType->numberString)) {
         inputExtDataType->stringStartOffset = 2;
@@ -25,7 +30,7 @@ void determine_basic_type_representation(extendedDataType* inputExtDataType) {
     bool only1s0s = true;
     determine_numberstring_offset(inputExtDataType);
     size_t idxString;
-    for (idxString = inputExtDataType->stringStartOffset; idxString < string_length(inputExtDataType->numberString); idxString++) {
+    for (idxString = inputExtDataType->stringStartOffset; idxString < inputExtDataType->stringLength; idxString++) {
         char currChar = inputExtDataType->numberString[idxString];
         if (allLettersOrSymbols) {
             allLettersOrSymbols = !isnumber(currChar);
@@ -41,8 +46,7 @@ void determine_basic_type_representation(extendedDataType* inputExtDataType) {
     }
     if (idxString == inputExtDataType->stringStartOffset) {
         // no loop cycles performed, probably wrong input
-        inputExtDataType->basic = UNDEFINED_TYPE;
-        inputExtDataType->representation.undefinedRepresentation = UNDEFINED;
+        set_undefined_basic_type(inputExtDataType);
         return;
     }
 
@@ -58,9 +62,14 @@ void determine_basic_type_representation(extendedDataType* inputExtDataType) {
         inputExtDataType->basic = FLOATING_TYPE;
         inputExtDataType->representation.floatingRepresentation = DECIMAL_FLOAT;
     } else if (only1s0s) {
-        // TODO modality to consider binary values as floating-point numbers
-        inputExtDataType->basic = INTEGER_TYPE;
-        inputExtDataType->representation.integerRepresentation = BINARY;
+        if (inputExtDataType->stringLength <= MAX_BITS) {
+            // TODO modality to consider binary values as floating-point numbers
+            inputExtDataType->basic = INTEGER_TYPE;
+            inputExtDataType->representation.integerRepresentation = BINARY;
+        } else {
+            set_undefined_basic_type(inputExtDataType);
+        }
+
     } else if (allValidHexChars) {
         inputExtDataType->basic = INTEGER_TYPE;
         if (allNumbers && !contains_0x_start(inputExtDataType->numberString)) {
@@ -86,8 +95,8 @@ void parse_number_from_string(extendedDataType* inputExtDataType) {
     Valid number formats for integers are: 10011010010 , 1234 , Ox4D2 , 4D2, 00001234 / -1234 , -00001234
     Valid nuber formats for floatings are: -1234.1234 / 1.234E+3 / 0.1234
     */
-    size_t numberStringLength = string_length(inputExtDataType->numberString);
-    if (numberStringLength == 0) {
+    inputExtDataType->stringLength = string_length(inputExtDataType->numberString);
+    if (inputExtDataType->stringLength == 0) {
         return;
     }
     // TODO recognize scientific notation, case with E - rearrange string?
