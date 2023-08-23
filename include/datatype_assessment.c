@@ -125,7 +125,7 @@ void print_extended_datatype(const extendedDataType* const inputExtDataType) {
         return;
     }
 
-    printf("String number %s | ", inputExtDataType->numberString);
+    printf("String number <%s> | ", inputExtDataType->numberString);
     printf("Type: ");
     switch (inputExtDataType->basic) {
         case UNDEFINED_TYPE:
