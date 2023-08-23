@@ -35,8 +35,12 @@ void determine_basic_type_representation(extendedDataType* inputExtDataType) {
         if (allLettersOrSymbols) {
             allLettersOrSymbols = !isnumber(currChar);
         }
-        allValidHexChars = allValidHexChars && (contains_hex_letters(&currChar) || isnumber(currChar));
-        allNumbers = allNumbers && isnumber(currChar);
+        if (allValidHexChars) {
+            allValidHexChars = contains_hex_letters(&currChar) || isnumber(currChar);
+        }
+        if (allNumbers) {
+            allNumbers = isnumber(currChar);
+        }
         if (!allLettersOrSymbols && !hasComma) {
             hasComma = (currChar == '.') || (currChar == ',');
         }
