@@ -32,6 +32,7 @@ int main(int argc, char const *argv[]) {
         for (unsigned int i = offset1stArg; i < numFunctionArgs + offset1stArg; i++) {
             if (string_length(argv[i]) > 0) {
                 initialize_extended_datatype(&extDataTypes[i - offset1stArg], argv[i]);
+                print_extended_datatype(&extDataTypes[i - offset1stArg]);
             }
         }
     }

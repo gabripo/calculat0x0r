@@ -90,7 +90,7 @@ void determine_sign(extendedDataType* inputExtDataType){
     // TODO: check basic type, then the very first character, if '-'
 };
 void determine_size(extendedDataType* inputExtDataType){};
-void determine_value(extendedDataType* inputExtDataType){};
+void determine_value(extendedDataType* inputExtDataType) {}
 void determine_complement(extendedDataType* inputExtDataType){};
 void determine_minmax_range(extendedDataType* inputExtDataType){};
 
@@ -117,4 +117,60 @@ void initialize_extended_datatype(extendedDataType* inputExtDataType, const char
 
     determine_complement(inputExtDataType);
     determine_minmax_range(inputExtDataType);
-}
+};
+
+void print_extended_datatype(const extendedDataType* const inputExtDataType) {
+    if (inputExtDataType->stringLength == 0) {
+        puts("Invalid length of extended data type to print!");
+        return;
+    }
+
+    printf("String number %s :", inputExtDataType->numberString);
+    printf("Type: ");
+    switch (inputExtDataType->basic) {
+        case UNDEFINED_TYPE:
+            printf("Undefined");
+        case CHAR_TYPE:
+            printf("Char");
+            break;
+        case INTEGER_TYPE:
+            printf("Integer");
+            printf(" - Representation: ");
+            switch (inputExtDataType->representation.integerRepresentation) {
+                case BINARY:
+                    printf("Binary");
+                    break;
+                case DECIMAL_INT:
+                    printf("Decimal");
+                    break;
+                case HEXADECIMAL:
+                    printf("Hexadecimal");
+                    break;
+                default:
+                    printf("UNKNOWN");
+                    break;
+            }
+            break;
+        case FLOATING_TYPE:
+            printf("Floating-point");
+            printf(" - Representation: ");
+            switch (inputExtDataType->representation.floatingRepresentation) {
+                case DECIMAL_FLOAT:
+                    printf("Decimal float");
+                    break;
+                case IEE754_SINGLE:
+                    printf("IEE7544 Single-precision");
+                    break;
+                case IEE754_DOUBLE:
+                    printf("IEE7544 Double-precision");
+                    break;
+                default:
+                    printf("UNKNOWN");
+                    break;
+            }
+            break;
+        default:
+            break;
+    }
+    puts("");
+};
