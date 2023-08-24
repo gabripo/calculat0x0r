@@ -254,7 +254,38 @@
             "externalConsole": false,
             "MIMode": "lldb",
             "preLaunchTask": "build debug"
+        },
+        {
+            "name": "(lldb) Debug with multiple arguments",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/Debug/calculat0x0r",
+            "args": [
+                "42",
+                "0000042",
+                "-0000042",
+                "-42",
+                "0x42",
+                "ABCD",
+                "ABC42D",
+                "00101010",
+                "0b00101010",
+                "1.234",
+                "-1.234",
+                "A.BCD",
+                "A%BCD",
+                "0x",
+                "0b",
+                ".",
+                ",",
+                "-"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "preLaunchTask": "build debug"
         }
-        // TODO task with multiple arguments
     ]
 }
