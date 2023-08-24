@@ -131,6 +131,7 @@ void print_extended_datatype(const extendedDataType* const inputExtDataType) {
     switch (inputExtDataType->basic) {
         case UNDEFINED_TYPE:
             printf("Undefined");
+            break;
         case CHAR_TYPE:
             printf("Char");
             break;
