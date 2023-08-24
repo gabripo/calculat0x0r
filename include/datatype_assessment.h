@@ -139,4 +139,6 @@ void determine_minmax_range(extendedDataType* inputExtDataType);
 void initialize_extended_datatype(extendedDataType* inputExtDataType, const char* const stringToParse);
 // bool check_validity_extended_datatype(const extendedDataType* const inputExtDataType);
 void print_extended_datatype(const extendedDataType* const dataTypeToPrint);
+
+void closest_float_approximation(const extendedDataType* const inputExtDataType);
 #endif

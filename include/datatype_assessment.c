@@ -66,6 +66,7 @@ void determine_basic_type_representation(extendedDataType* inputExtDataType) {
         inputExtDataType->basic = FLOATING_TYPE;
         inputExtDataType->representation.floatingRepresentation = DECIMAL_FLOAT;
     } else if (only1s0s) {
+        // TODO modality to consider 1/0 values as decimal numbers
         if (inputExtDataType->stringLength <= MAX_BITS) {
             // TODO modality to consider binary values as floating-point numbers
             inputExtDataType->basic = INTEGER_TYPE;
@@ -173,4 +174,7 @@ void print_extended_datatype(const extendedDataType* const inputExtDataType) {
             break;
     }
     puts("");
+    // TODO extend print to other characteristics
 };
+
+void closest_float_approximation(const extendedDataType* const inputExtDataType){};
