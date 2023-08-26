@@ -125,7 +125,7 @@ void parse_number_from_string(extendedDataType* inputExtDataType) {
     Valid nuber formats for floatings are: -1234.1234 / 1.234E+3 / 0.1234
     */
     inputExtDataType->stringLength = string_length(inputExtDataType->numberString);
-    if (inputExtDataType->stringLength == 0) {
+    if (inputExtDataType->stringLength == 0 || inputExtDataType->stringLength > MAX_BITS) {
         return;
     }
     // TODO recognize scientific notation, case with E - rearrange string?
