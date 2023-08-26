@@ -1,7 +1,11 @@
 #ifndef DATATYPE_ASSESSMENT
 #define DATATYPE_ASSESSMENT
+#include <ctype.h>
 #include <float.h>
 #include <limits.h>
+#include <stdbool.h>
+#include <stdlib.h>
+#include <string.h>
 
 #include "custom_datatypes.h"
 
@@ -135,6 +139,8 @@ void determine_size(extendedDataType* inputExtDataType);
 void determine_value(extendedDataType* inputExtDataType);
 void determine_complement(extendedDataType* inputExtDataType);
 void determine_minmax_range(extendedDataType* inputExtDataType);
+bool number_string_zero_long(const extendedDataType* const inputExtDataType);
+bool number_string_too_long(const extendedDataType* const inputExtDataType);
 
 void initialize_extended_datatype(extendedDataType* inputExtDataType, const char* const stringToParse);
 // bool check_validity_extended_datatype(const extendedDataType* const inputExtDataType);

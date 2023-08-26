@@ -1,10 +1,5 @@
 #include "datatype_assessment.h"
 
-#include <ctype.h>
-#include <stdbool.h>
-#include <stdlib.h>
-#include <string.h>
-
 #include "lowlevel_functions.h"
 
 void set_undefined_basic_type(extendedDataType* inputExtDataType) {
@@ -125,7 +120,7 @@ void parse_number_from_string(extendedDataType* inputExtDataType) {
     Valid nuber formats for floatings are: -1234.1234 / 1.234E+3 / 0.1234
     */
     inputExtDataType->stringLength = string_length(inputExtDataType->numberString);
-    if (inputExtDataType->stringLength == 0 || inputExtDataType->stringLength > MAX_BITS) {
+    if (number_string_zero_long(inputExtDataType) || number_string_too_long(inputExtDataType)) {
         return;
     }
     // TODO recognize scientific notation, case with E - rearrange string?
@@ -144,8 +139,16 @@ void initialize_extended_datatype(extendedDataType* inputExtDataType, const char
     determine_minmax_range(inputExtDataType);
 };
 
+bool number_string_zero_long(const extendedDataType* const inputExtDataType) {
+    return (string_length(inputExtDataType->numberString) == (size_t)0);
+}
+
+bool number_string_too_long(const extendedDataType* const inputExtDataType) {
+    return (string_length(inputExtDataType->numberString) > (size_t)MAX_BITS);
+}
+
 void print_extended_datatype(const extendedDataType* const inputExtDataType) {
-    if (inputExtDataType->stringLength == 0) {
+    if (number_string_zero_long(inputExtDataType) || number_string_too_long(inputExtDataType)) {
         puts("Invalid length of extended data type to print!");
         return;
     }
