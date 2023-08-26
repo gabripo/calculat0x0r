@@ -256,6 +256,36 @@
             "preLaunchTask": "build debug"
         },
         {
+            "name": "(lldb) Debug with 1 wrong (+ only) argument",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/Debug/calculat0x0r",
+            "args": [
+                "+"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "preLaunchTask": "build debug"
+        },
+        {
+            "name": "(lldb) Debug with 1 too-long (65 characters) argument",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/Debug/calculat0x0r",
+            "args": [
+                "12345678901234567890123456789012345678901234567890123456789012345"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "preLaunchTask": "build debug"
+        },
+        {
             "name": "(lldb) Debug with multiple arguments",
             "type": "cppdbg",
             "request": "launch",
@@ -278,7 +308,8 @@
                 "0b",
                 ".",
                 ",",
-                "-"
+                "-",
+                "+"
             ],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
