@@ -11,6 +11,7 @@ size_t string_length(const char* const inputString);
 char* create_copy_string(const char* const sourceString);
 bool contains_0x_start(const char* const inputString);
 bool contains_0b_start(const char* const inputString);
+bool contains_plus_sign(const char* const inputString);
 bool contains_minus_sign(const char* const inputString);
 bool contains_hex_letters(const char* const inputString);
 

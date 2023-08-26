@@ -86,10 +86,34 @@ void determine_basic_type_representation(extendedDataType* inputExtDataType) {
         inputExtDataType->basic = CHAR_TYPE;
     }
 };
+
 void determine_width(extendedDataType* inputExtDataType){};
-void determine_sign(extendedDataType* inputExtDataType){
-    // TODO: check basic type, then the very first character, if '-'
+
+void determine_sign(extendedDataType* inputExtDataType) {
+    bool stringHasMinus = contains_minus_sign(inputExtDataType->numberString);
+    bool stringHasPlus = contains_plus_sign(inputExtDataType->numberString);
+    switch (inputExtDataType->basic) {
+        case INTEGER_TYPE:
+            if (stringHasMinus || stringHasPlus) {
+                inputExtDataType->sign.integerSign = SIGNED;
+            } else {
+                inputExtDataType->sign.integerSign = UNSIGNED;
+            }
+            break;
+        case FLOATING_TYPE:
+            if (stringHasMinus) {
+                inputExtDataType->sign.floatingSign = NEGATIVE;
+            } else {
+                inputExtDataType->sign.floatingSign = POSITIVE;
+            }
+            break;
+            // TODO when to give unsigned char?
+        default:
+            inputExtDataType->sign.charSign = UNSIGNED;
+            break;
+    }
 };
+
 void determine_size(extendedDataType* inputExtDataType){};
 void determine_value(extendedDataType* inputExtDataType) {}
 void determine_complement(extendedDataType* inputExtDataType){};
@@ -144,6 +168,16 @@ void print_extended_datatype(const extendedDataType* const inputExtDataType) {
                     break;
                 case DECIMAL_INT:
                     printf("Decimal");
+                    switch (inputExtDataType->sign.integerSign) {
+                        case SIGNED:
+                            printf(" (signed)");
+                            break;
+                        case UNSIGNED:
+                            printf(" (unsigned)");
+                            break;
+                        default:
+                            break;
+                    }
                     break;
                 case HEXADECIMAL:
                     printf("Hexadecimal");
@@ -168,6 +202,16 @@ void print_extended_datatype(const extendedDataType* const inputExtDataType) {
                     break;
                 default:
                     printf("UNKNOWN");
+                    break;
+            }
+            switch (inputExtDataType->sign.floatingSign) {
+                case POSITIVE:
+                    printf(" (positive)");
+                    break;
+                case NEGATIVE:
+                    printf(" (negative)");
+                    break;
+                default:
                     break;
             }
             break;

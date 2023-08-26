@@ -38,6 +38,13 @@ bool contains_0b_start(const char* const inputString) {
     return false;
 }
 
+bool contains_plus_sign(const char* const inputString) {
+    if (string_length(inputString) >= 1) {
+        return (inputString[0] == '+');
+    }
+    return false;
+}
+
 bool contains_minus_sign(const char* const inputString) {
     if (string_length(inputString) >= 1) {
         return (inputString[0] == '-');
